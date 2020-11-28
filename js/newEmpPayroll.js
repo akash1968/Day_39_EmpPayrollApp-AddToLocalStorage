@@ -1,4 +1,5 @@
-  window.addEventListener('DOMContentLoaded', (event) => {
+  
+window.addEventListener('DOMContentLoaded', (event) => {
     const name = document.querySelector('#name');
     const textError = document.querySelector('.text-error');
     name.addEventListener('input', function () {
@@ -43,7 +44,8 @@ const setTextValue = (id, value) => {
 // UC 3
 const save = () => {
     try {
-        let EmployeePayRoll = createEmployeePayroll();
+        let employeePayrollData = createEmployeePayroll();
+        createAndUpdateStorage(employeePayrollData);
     }
     catch (e) {
         alert(e);
@@ -84,4 +86,18 @@ const getSelectedValues = (propertyValue) => {
 const getInputValueById = (id) => {
     let value = document.querySelector(id).value;
     return value;
+}
+
+// UC 4
+function createAndUpdateStorage(employeePayrollData) {
+    let employeePayrollList = [];
+    employeePayrollList = JSON.parse(localStorage.getItem("EmployeePayrollList"));
+    if (employeePayrollList != undefined) {
+        employeePayrollList.push(employeePayrollData);
+    }
+    else {
+        employeePayrollList = [employeePayrollData];
+    }
+    alert(employeePayrollList.toString());
+    localStorage.setItem("EmployeePayrollList", JSON.stringify(employeePayrollList))
 }
