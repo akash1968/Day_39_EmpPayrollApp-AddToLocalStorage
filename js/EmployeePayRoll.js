@@ -8,7 +8,7 @@ class EmployeePayRoll {
 
     get name() { return this._name; }
     set name(name) {
-        let checkName = RegExp('^[a-zA-Z][a-zA-Z ]+[a-zA-Z]$');
+        let checkName = RegExp('^[A-Z]{1}[a-z]{2,}$');
         if (checkName.test(name)) {
             this._name = name;
         }
